@@ -7,7 +7,7 @@ const editPassword = async (req, res, next) => {
 
     try {
         
-        var user = User.findone({ _id: req.user.email })
+        var user = User.findone({ email: req.user.email })
 
         const { password } = req.body;
 

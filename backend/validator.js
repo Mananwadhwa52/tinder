@@ -22,9 +22,6 @@ var validate_signup = (req) => {
         throw error("password is not strong ")
     }
 
-    
-
-
 
 }
 const verifySignupData=(req)=>{
@@ -33,7 +30,7 @@ const verifySignupData=(req)=>{
     var safedata =["firstName","lastName","gender","age","profilePic","skill"]
 
 
-    var is_allowed=Object.keys(req.body).map((field)=>safedata.includes(field));
+    var is_allowed=Object.keys(req.body).every((field)=>safedata.includes(field));
 
     return is_allowed;
 }

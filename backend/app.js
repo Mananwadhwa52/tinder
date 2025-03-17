@@ -2,7 +2,6 @@ const express = require("express")
 const { authRouter } = require("./routes/auth")
 
 
-// const { requestRouter } = require("./routes/feed")
 const { profileRouter } = require("./routes/profile")
 
 const { requestRouter } = require("./routes/request")
