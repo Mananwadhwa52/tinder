@@ -20,7 +20,7 @@ if (userEmail) {
     }
 }
 
-        var user = User.findone({ email: userEmail })
+        var user = await User.findone({ email: userEmail })
 
         if (!user) {
             throw error("user already exist")
@@ -35,7 +35,7 @@ let vpassword = validator.isStrongPassword(password)
 if (!vpassword) {
     throw error("password is not strong ")
 }
-bcrpyt_password = bcrpyt.hash(password, 15);
+bcrpyt_password =await bcrpyt.hash(password, 15);
 
 user.password = bcrpyt_password;
 

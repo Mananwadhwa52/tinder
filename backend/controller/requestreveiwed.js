@@ -3,9 +3,9 @@ const { Connection } = require("../models/user_connection")
 
 var requestreveiwer = async (req, res, next) => {
     try {
-        var logeduser = User.findone({ email: req.user.email }).select("_id");
-        var byuser = req.param.byuser;
-        var status = req.param.status;
+        var logeduser =await User.findone({ email: req.user.email }).select("_id");
+        var byuser = req.params.byuser;
+        var status = req.params.status;
 
         const allowedrequest = ["rejected", "accepted"]
 
@@ -14,7 +14,7 @@ var requestreveiwer = async (req, res, next) => {
 
         }
 
-        const Byuser = User.findone({
+        const Byuser =await User.findone({
             _id: byuser
         })
         if (!Byuser) {
@@ -22,9 +22,9 @@ var requestreveiwer = async (req, res, next) => {
             throw error("the user to which request was send doesn`t exist in database")
         }
 
-        const connetionrequest = Connection.findone({
+        const connetionrequest =await Connection.findone({
             byuser: byuser,
-            touser: logeduser,
+            touser: logeduser._id,
             status: "interested"
         }).populate("touser byuser",["firstName lastName"]);
 

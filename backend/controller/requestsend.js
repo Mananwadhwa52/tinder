@@ -4,9 +4,9 @@ const { User } = require("../models/user_model")
 var sendRequest = async (req, res, next) => {
 
     try {
-        const byuser = User.findone({ email: req.user.email }).select("_id");
-        const touser = req.param.touser;
-        const status = req.param.status;
+        const byuser =await User.findone({ email: req.user.email }).select("_id");
+        const touser = req.params.touser;
+        const status = req.params.status;
 
         const allowedRequest = ["ignored", "interested"]
         if (!allowedRequest.includes(status)) {
@@ -18,7 +18,7 @@ var sendRequest = async (req, res, next) => {
         }
 
 
-        const existinguser = Connection.findone({
+        const existinguser = await Connection.findone({
             $or: [
                 { byuser: byuser, touser: touser },
                 { byuser: touser, touser: byuser }
@@ -29,8 +29,8 @@ var sendRequest = async (req, res, next) => {
             throw error("their is an essixting user request")
         }
 
-        const Touser = User.findone({
-            touser: touser
+        const Touser =await User.findone({
+            _id: touser
         })
         if (!Touser) {
 

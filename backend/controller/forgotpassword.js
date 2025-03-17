@@ -1,7 +1,7 @@
 const { sendOtp } = require("./mailer")
 const { User } = require("../models/user_model")
 
-var forgotpassword = (req,res,next) => {
+var forgotpassword = async(req,res,next) => {
 
 
 
@@ -17,7 +17,7 @@ var forgotpassword = (req,res,next) => {
         }
     }
     
-    var user = User.findone({ email: userEmail })
+    var user =await User.findone({ email: userEmail })
 
     if (!user) {
         throw error("user already exist")

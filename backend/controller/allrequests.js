@@ -1,11 +1,11 @@
 const { User } = require("../models/user_model")
 const { Connection } = require("../models/user_connection")
 
-var allrequests=(req,res,next)=>{
+var allrequests=async(req,res,next)=>{
     try{
-    var loginuser=User.findone({ email: req.user.email }).select("_id");
+    var loginuser=await User.findone({ email: req.user.email }).select("_id");
     
-    const connetionrequest = Connection.find({
+    const connetionrequest =await Connection.find({
        
         touser: loginuser,
         status: "interested"

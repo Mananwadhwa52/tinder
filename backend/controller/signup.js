@@ -12,7 +12,7 @@ var signup = async (req, res, next) => {
 
         validate_signup(req)
 
-        var user = User.findone({ email: email })
+        var user =await User.findone({ email: email })
 
         if (user) {
             throw error("user already exist")
@@ -20,7 +20,7 @@ var signup = async (req, res, next) => {
 
         
 
-        bcrpyt_password = bcrpyt.hash(password, 15);
+        bcrpyt_password =await bcrpyt.hash(password, 15);
 
         newuser = new User({
             firstName: firstName,

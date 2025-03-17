@@ -7,7 +7,7 @@ const editPassword = async (req, res, next) => {
 
     try {
         
-        var user = User.findone({ email: req.user.email })
+        var user =await User.findone({ email: req.user.email })
 
         const { password } = req.body;
 
@@ -16,7 +16,7 @@ const editPassword = async (req, res, next) => {
         if (!vpassword) {
             throw error("password is not strong ")
         }
-        bcrpyt_password = bcrpyt.hash(password, 15);
+        bcrpyt_password =await bcrpyt.hash(password, 15);
 
         user.password = bcrpyt_password;
 

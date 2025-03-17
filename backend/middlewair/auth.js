@@ -11,7 +11,7 @@ var userauth = async (req, res, next) => {
 
         var { _id } = decorded_token;
 
-        var user = User.findByID(_id).select(safedata)
+        var user =await User.findByID(_id).select(safedata)
 
         if (!user) {
             throw error("user doesnot exist in database")

@@ -31,7 +31,7 @@ var sendOtp=(userEmail)=>{
     from: process.env.user,
     to: userEmail,
     subject: 'tinder otp ',
-     text: 'otp for varification process is '+ otpgenerator()
+     text: 'otp for varification process is '+ otpstore[userEmail]
   };
   
 

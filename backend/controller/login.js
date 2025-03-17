@@ -12,7 +12,7 @@ var login = async (req, res, next) => {
 
     try {
         var { email, password } = req.body;
-        var user = User.findone({ email: email })
+        var user =await User.findone({ email: email })
 
         if (!user) {
             throw error("user doesn`t exist in database")

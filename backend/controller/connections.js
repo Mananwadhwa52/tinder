@@ -1,11 +1,11 @@
 const { User } = require("../models/user_model")
 const { Connection } = require("../models/user_connection")
 
-var connections=(req,res,next)=>{
+var connections=async(req,res,next)=>{
     try{
-    var loginuser=User.findone({ email: req.user.email }).select("_id");
+    var loginuser=await User.findone({ email: req.user.email }).select("_id");
 
-    const connetionrequest = Connection.find({
+    const connetionrequest =await Connection.find({
         $or:[{touser: loginuser._id,status: "accepted"},
             {byuser: loginuser._id,status: "accepted"}
             
