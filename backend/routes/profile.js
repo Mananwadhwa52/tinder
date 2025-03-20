@@ -11,7 +11,7 @@ const profileRouter=express.Router()
 
 profileRouter.use(express.json())
 
-profileRouter.post("/profile/veiw",userauth,getprofile);
+profileRouter.get("/profile/veiw",userauth,getprofile);
 
 profileRouter.patch("/profile/edit",userauth,profile_edit);
 
