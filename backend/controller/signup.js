@@ -35,13 +35,11 @@ var signup = async (req, res, next) => {
 
         await newuser.save()
 
-        res.send("user successfully saved")
+        res.send("user successfully saved");
     }
-    catch {
-        (e) => {
+    catch (e) {
             console.log('their is an error :' + e)
         }
-    }
 }
 module.exports = {
     signup: signup

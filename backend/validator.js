@@ -5,7 +5,7 @@ var validate_signup = (req) => {
 
     var { firstName, lastName, age, email, password, gender, profilePic } = req.body;
 
-    if (!firstName || lastName) {
+    if (!firstName || !lastName) {
 
         throw error("please enter first name and last name")
     }
