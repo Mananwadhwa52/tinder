@@ -1,6 +1,6 @@
 const validator = require("validator")
 const bcrpyt = require("bcrypt")
-const mongoose = require("mongoose")
+const { mongoose }= require("mongoose")
 const { User } = require("../models/user_model")
 const { validate_signup } = require("../validator")
 const { error } = require("console")
@@ -12,13 +12,13 @@ var signup = async (req, res, next) => {
 
         validate_signup(req)
 
-        var user =await User.findone({ email: email })
+        var user =await User.findOne({ email: email })
 
         if (user) {
+            res.send(" user already exist")
             throw error("user already exist")
         }
 
-        
 
         bcrpyt_password =await bcrpyt.hash(password, 15);
 

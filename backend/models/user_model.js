@@ -1,4 +1,5 @@
-
+const dotenv=require('dotenv')
+dotenv.config();
 const mongoose=require("mongoose")
 const validator= require("validator")
 const jwt =require("jsonwebtoken")
@@ -43,12 +44,12 @@ const user= new mongoose.Schema({
     gender:{
         type:String,
         required:(true,"plese enter gender"),
-        enum:(["male","female","others"],"plese enter valid gender")
+        enum:["male","female","others"]
     },
     age:{
         type:Number,
         required:(true,"plese enter your age"),
-        min:(18,"person above 18 year of age are allowed"),
+        min:18
 
     },
     profilePic:{
@@ -71,12 +72,14 @@ const user= new mongoose.Schema({
  );
  user.index({firstName:1,lastName:1})
 
+ var secreatkey=SECRETKEY;
+
  user.methods.getjwt=async function(){
 
     var user=this;
-    var token = await jwt.sign({ _id: user._id }, process.env.secreatkey)
+    var token = await jwt.sign({ _id: user._id }, secreatkey)
 
-    return token
+    return token;
 
     
  }
