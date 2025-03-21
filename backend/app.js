@@ -1,6 +1,6 @@
 const express = require("express")
 const { authRouter } = require("./routes/auth")
-const { connectdb } = require("./database")
+const connectdb = require("./database")
 
 const { profileRouter } = require("./routes/profile")
 
@@ -14,9 +14,11 @@ app.use("/", profileRouter)
 app.use("/", requestRouter)
 
 
-connectdb().then(
-    console.log("database connected succesfully")
-)
+connectdb().then(()=>console.log("database connected succesfully")
+
+).catch((error)=>console.log("database not connected succesfully",error)
+    
+);
 
 app.listen(3000, () => {
     console.log("page is live at 3000port ")
